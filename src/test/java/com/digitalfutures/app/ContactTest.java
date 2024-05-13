@@ -128,6 +128,17 @@ public class ContactTest {
                 new Contact(name, phoneNumber, email);
             });
         }
+        @Test
+        @DisplayName("constructor doesn't throw IllegalArgumentException when phone number is 11 - 13 digits but starts with a +")
+        public void constructorDoesntThrowsExceptionIfPhoneNumberIS11To13CharactersButStartsWithPlus() {
+            // Arrange
+            String name = "Sam";
+            String phoneNumber = "+4412345678910";
+            String email = "sam@aol.com";
+            // Act
+            //Assert
+            assertDoesNotThrow(() -> new Contact(name, phoneNumber, email));
+        }
     }
 
 }
