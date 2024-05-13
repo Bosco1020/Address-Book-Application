@@ -72,5 +72,22 @@ public class ContactTest {
             });
         }
     }
+    @Nested
+    @DisplayName("Constructor Phone Number tests")
+    class ConstructorPhoneNumberTests {
+        @Test
+        @DisplayName("constructor throws IllegalArgumentException when phone number is null")
+        public void constructorThrowsExceptionIfPhoneNumberIsNull() {
+            // Arrange
+            String name = "Sam";
+            String phoneNumber = null;
+            String email = "sam@aol.com";
+            // Act
+            //Assert
+            assertThrows(IllegalArgumentException.class, () -> {
+                new Contact(name, phoneNumber, email);
+            });
+        }
+    }
 
 }

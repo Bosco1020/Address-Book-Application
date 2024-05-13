@@ -8,6 +8,7 @@ public class Contact {
 
     public Contact(String newName, String newPhone, String newEmail) {
         Validator.validateString(newName);
+        Validator.validatePhoneNumber(newPhone);
         this.name = newName;
         this.phoneNumber = newPhone;
         this.email = newEmail;

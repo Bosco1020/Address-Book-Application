@@ -7,4 +7,8 @@ public class Validator {
             throw new IllegalArgumentException("Property cannot be null or empty");
         }
     }
+
+    public static void validatePhoneNumber(String input) {
+        validateString(input);
+    }
 }
