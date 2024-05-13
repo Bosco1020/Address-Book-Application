@@ -88,6 +88,19 @@ public class ContactTest {
                 new Contact(name, phoneNumber, email);
             });
         }
+        @Test
+        @DisplayName("constructor throws IllegalArgumentException when phone number is an empty string")
+        public void constructorThrowsExceptionIfPhoneNumberEmptyString() {
+            // Arrange
+            String name = "Sam";
+            String phoneNumber = "";
+            String email = "sam@aol.com";
+            // Act
+            //Assert
+            assertThrows(IllegalArgumentException.class, () -> {
+                new Contact(name, phoneNumber, email);
+            });
+        }
     }
 
 }
