@@ -58,6 +58,19 @@ public class ContactTest {
                 new Contact(name, phoneNumber, email);
             });
         }
+        @Test
+        @DisplayName("constructor throws IllegalArgumentException when name is only whitespace")
+        public void constructorThrowsExceptionIfNameIsWhitespace() {
+            // Arrange
+            String name = "   ";
+            String phoneNumber = "07123456789";
+            String email = "sam@aol.com";
+            // Act
+            //Assert
+            assertThrows(IllegalArgumentException.class, () -> {
+                new Contact(name, phoneNumber, email);
+            });
+        }
     }
 
 }
