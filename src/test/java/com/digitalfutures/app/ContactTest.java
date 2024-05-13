@@ -28,6 +28,24 @@ public class ContactTest {
                     () -> assertEquals(phoneNumber, b.getPhoneNumber()),
                     () -> assertEquals(email, b.getEmail()));
         }
+        // Phone Number should only accept an 11 digit number input or a 11-13 digit number that starts with a +
+    }
+    @Nested
+    @DisplayName("Constructor Name tests")
+    class ConstructorNameTests {
+        @Test
+        @DisplayName("constructor throws IllegalArgumentException when name is null")
+        public void constructorThrowsExceptionIfNameIsNull() {
+            // Arrange
+            String name = null;
+            String phoneNumber = "07123456789";
+            String email = "sam@aol.com";
+            // Act
+            //Assert
+            assertThrows(IllegalArgumentException.class, () -> {
+                new Contact(name, phoneNumber, email);
+            });
+        }
     }
 
 }
