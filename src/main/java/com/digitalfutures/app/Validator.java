@@ -10,5 +10,6 @@ public class Validator {
 
     public static void validatePhoneNumber(String input) {
         validateString(input);
+        if(input.length() != 11) {throw new IllegalArgumentException("Property cannot be null or empty");}
     }
 }

@@ -101,6 +101,20 @@ public class ContactTest {
                 new Contact(name, phoneNumber, email);
             });
         }
+        @Test
+        @DisplayName("constructor throws IllegalArgumentException when phone number is more or less than 11 characters excluding whitespace")
+        public void constructorThrowsExceptionIfPhoneNumberIsWhitespace() {
+            // Arrange
+            String name = "Sam";
+            String phoneNumber1 = "0712345";
+            String phoneNumber2 = "07123456789101112";
+            String email = "sam@aol.com";
+            // Act
+            //Assert
+            assertAll("Constructor set values to inputs",
+                    () -> assertThrows(IllegalArgumentException.class, () -> {new Contact(name, phoneNumber1, email);}),
+                    () -> assertThrows(IllegalArgumentException.class, () -> {new Contact(name, phoneNumber2, email);}));
+        }
     }
 
 }
