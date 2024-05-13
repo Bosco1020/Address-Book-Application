@@ -115,6 +115,19 @@ public class ContactTest {
                     () -> assertThrows(IllegalArgumentException.class, () -> {new Contact(name, phoneNumber1, email);}),
                     () -> assertThrows(IllegalArgumentException.class, () -> {new Contact(name, phoneNumber2, email);}));
         }
+        @Test
+        @DisplayName("constructor throws IllegalArgumentException when phone number contains characters that aren't numbers 0-9")
+        public void constructorThrowsExceptionIfPhoneNumberContainsNonNumbers() {
+            // Arrange
+            String name = "Sam";
+            String phoneNumber = "NineHundred";
+            String email = "sam@aol.com";
+            // Act
+            //Assert
+            assertThrows(IllegalArgumentException.class, () -> {
+                new Contact(name, phoneNumber, email);
+            });
+        }
     }
 
 }
