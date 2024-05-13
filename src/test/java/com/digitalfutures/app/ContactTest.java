@@ -12,7 +12,6 @@ public class ContactTest {
     @DisplayName("Constructor tests")
     class ConstructorTests {
 
-        // US1: Test 1
         @Test
         @DisplayName("Constructor takes arguments for a contacts name, phone number & email and set those value")
         public void constructorTakesNameNumberEmailAndSetsValues() {
@@ -38,6 +37,19 @@ public class ContactTest {
         public void constructorThrowsExceptionIfNameIsNull() {
             // Arrange
             String name = null;
+            String phoneNumber = "07123456789";
+            String email = "sam@aol.com";
+            // Act
+            //Assert
+            assertThrows(IllegalArgumentException.class, () -> {
+                new Contact(name, phoneNumber, email);
+            });
+        }
+        @Test
+        @DisplayName("constructor throws IllegalArgumentException when name is an empty string")
+        public void constructorThrowsExceptionIfNameEmptyString() {
+            // Arrange
+            String name = "";
             String phoneNumber = "07123456789";
             String email = "sam@aol.com";
             // Act
