@@ -76,5 +76,19 @@ public class AddressBookTest {
             //Assert
             assertEquals(testBook.searchContacts("Joe"), expected);
         }
+
+        @Test
+        @DisplayName("if searchContacts() doesn't find a matching contact, it returns null")
+        public void searchContactsReturnsNullIfNoMatchingNamesFound() {
+            // Arrange
+            AddressBook testBook = new AddressBook();
+            // Act
+            Contact mockContact1 = mock(Contact.class);
+            when(mockContact1.getName()).thenReturn("Juliet");
+
+            testBook.addContact(mockContact1);
+            //Assert
+            assertEquals(testBook.searchContacts("Joe"), null);
+        }
     }
 }

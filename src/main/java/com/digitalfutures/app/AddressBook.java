@@ -17,9 +17,8 @@ public class AddressBook {
     public ArrayList<Object> searchContacts(String target) {
         ArrayList<Object> output = new ArrayList<Object>();
         for(Object contact : contacts) {
-            if(((Contact)contact).getName().contains(target)) output.add(contact);
-        }
-        return output;
+            if(((Contact)contact).getName().contains(target)) output.add(contact); }
+        if(output.size() > 0) return output; return null;
     }
 
 }
