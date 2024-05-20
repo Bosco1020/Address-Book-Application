@@ -27,7 +27,6 @@ public class ContactTest {
                     () -> assertEquals(phoneNumber, b.getPhoneNumber()),
                     () -> assertEquals(email, b.getEmail()));
         }
-        // Phone Number should only accept an 11 digit number input or a 11-13 digit number that starts with a +
     }
     @Nested
     @DisplayName("Constructor Name tests")
@@ -128,6 +127,7 @@ public class ContactTest {
                 new Contact(name, phoneNumber, email);
             });
         }
+        // When adding a region code, it can be 1 to 3 digits followed by the 10 digit number
         @Test
         @DisplayName("constructor doesn't throw IllegalArgumentException when phone number is 11 - 13 digits but starts with a +")
         public void constructorDoesntThrowsExceptionIfPhoneNumberIS11To13CharactersButStartsWithPlus() {
@@ -138,6 +138,24 @@ public class ContactTest {
             // Act
             //Assert
             assertDoesNotThrow(() -> new Contact(name, phoneNumber, email));
+        }
+    }
+
+    @Nested
+    @DisplayName("Constructor Email tests")
+    class ConstructorEmailTests {
+        @Test
+        @DisplayName("constructor throws IllegalArgumentException when Email is null")
+        public void constructorThrowsExceptionIfEmailIsNull() {
+            // Arrange
+            String name = "Sam";
+            String phoneNumber = "07123456789";
+            String email = null;
+            // Act
+            //Assert
+            assertThrows(IllegalArgumentException.class, () -> {
+                new Contact(name, phoneNumber, email);
+            });
         }
     }
 

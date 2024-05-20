@@ -9,6 +9,7 @@ public class Contact {
     public Contact(String newName, String newPhone, String newEmail) {
         Validator.validateString(newName);
         Validator.validatePhoneNumber(newPhone);
+        Validator.validateEmail(newEmail);
         this.name = newName;
         this.phoneNumber = newPhone;
         this.email = newEmail;
