@@ -14,4 +14,12 @@ public class AddressBook {
         return contacts;
     }
 
+    public ArrayList<Object> searchContacts(String target) {
+        ArrayList<Object> output = new ArrayList<Object>();
+        for(Object contact : contacts) {
+            if(((Contact)contact).getName().contains(target)) output.add(contact);
+        }
+        return output;
+    }
+
 }
