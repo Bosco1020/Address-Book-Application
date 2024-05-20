@@ -31,4 +31,9 @@ public class Contact {
         return email;
     }
 
+    public boolean checkName(String input) {
+        if(input == this.name) return true;
+        return false;
+    }
+
 }

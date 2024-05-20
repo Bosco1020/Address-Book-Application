@@ -204,4 +204,19 @@ public class ContactTest {
         }
     }
 
+    @Nested
+    @DisplayName("Contact Search tests")
+    class SearchTests {
+        @Test
+        @DisplayName("checkName in Contact returns true if the name input matches the contacts name")
+        public void checkNameReturnsTrueIfNamesMatch() {
+            // Arrange
+            String testName = "Yen";
+            Contact testContact = new Contact(testName, "99775533110", "Yen-Ifer@Outlook.com");
+            // Act
+            //Assert
+            assertTrue(testContact.checkName(testName));
+        }
+    }
+
 }
