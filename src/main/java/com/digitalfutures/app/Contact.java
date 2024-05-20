@@ -7,12 +7,16 @@ public class Contact {
     private String email;
 
     public Contact(String newName, String newPhone, String newEmail) {
-        Validator.validateString(newName);
-        Validator.validatePhoneNumber(newPhone);
-        Validator.validateEmail(newEmail);
+        checkValidation(newName, newPhone, newEmail);
         this.name = newName;
         this.phoneNumber = newPhone;
         this.email = newEmail;
+    }
+
+    private void checkValidation(String newName, String newPhone, String newEmail) {
+        Validator.validateString(newName);
+        Validator.validatePhoneNumber(newPhone);
+        Validator.validateEmail(newEmail);
     }
 
     public String getName() {

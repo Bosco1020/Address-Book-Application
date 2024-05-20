@@ -6,12 +6,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class AddressBookTest {
 
     @Nested
-    @DisplayName("Content Tests")
-    class ContentTests {
+    @DisplayName("Address Book Input Tests")
+    class BookInputTests {
 
         @Test
         @DisplayName("A new Contact can be added to the array in the Address Book")
