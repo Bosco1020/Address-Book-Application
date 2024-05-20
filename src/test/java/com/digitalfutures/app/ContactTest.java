@@ -185,6 +185,23 @@ public class ContactTest {
                 new Contact(name, phoneNumber, email);
             });
         }
+
+        @Test
+        @DisplayName("constructor throws IllegalArgumentException when email doesn't conform to regular email format")
+        public void constructorThrowsExceptionIfEmailDoesNotMatchEmailFormat() {
+            // Arrange
+            String name = "Sam";
+            String phoneNumber = "07123456789";
+            String email1 = "testEmail.com";
+            String email2 = "testEmail@gmail";
+            String email3 = "testEmail@hotmail.com";
+            // Act
+            //Assert
+            assertAll("Constructor set values to inputs",
+                    () -> assertThrows(IllegalArgumentException.class, () -> {new Contact(name, phoneNumber, email1);}),
+                    () -> assertThrows(IllegalArgumentException.class, () -> {new Contact(name, phoneNumber, email2);}),
+                    () -> assertDoesNotThrow(() -> new Contact(name, phoneNumber, email3)));
+        }
     }
 
 }

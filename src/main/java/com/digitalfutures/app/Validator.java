@@ -17,5 +17,8 @@ public class Validator {
 
     public static void validateEmail(String input){
         validateString(input);
+        if(!input.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")){
+            throw new IllegalArgumentException("Property cannot be null or empty");
+        }
     }
 }
