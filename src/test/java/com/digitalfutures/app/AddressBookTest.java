@@ -25,5 +25,24 @@ public class AddressBookTest {
             //Assert
             assertEquals(testBook.getContacts().get(0), mockContact);
         }
+
+        @Test
+        @DisplayName("getContacts returns an array of every Contact stored in the Address Book")
+        public void AddressBookRetunsArrayOfAllContacts() {
+            // Arrange
+            AddressBook testBook = new AddressBook();
+            // Act
+            Contact mockContact1 = mock(Contact.class);
+            Contact mockContact2 = mock(Contact.class);
+            Contact mockContact3 = mock(Contact.class);
+            testBook.addContact(mockContact1);
+            testBook.addContact(mockContact2);
+            testBook.addContact(mockContact3);
+            //Assert
+            assertAll("Constructor set values to inputs",
+                    () -> assertEquals(testBook.getContacts().get(0), mockContact1),
+                    () -> assertEquals(testBook.getContacts().get(1), mockContact2),
+                    () -> assertEquals(testBook.getContacts().get(2), mockContact3));
+        }
     }
 }
