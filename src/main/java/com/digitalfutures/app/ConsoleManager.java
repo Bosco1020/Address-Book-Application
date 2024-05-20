@@ -1,5 +1,6 @@
 package com.digitalfutures.app;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ConsoleManager {
@@ -37,5 +38,21 @@ public class ConsoleManager {
             System.out.println("The Email Address is invalid. Please try again");
             response = sc.nextLine(); }
         return response;
+    }
+
+    public void printOutput(ArrayList<Object> inputs) {
+        for(int i=0; i<inputs.size(); i++){
+            printOutput(((Contact)inputs.get(i)).getName(), "Name:", "");
+            printOutput(((Contact)inputs.get(i)).getPhoneNumber(), "Phone Number:", "");
+            printOutput(((Contact)inputs.get(i)).getEmail(), "Email Address:", "");
+        }
+    }
+
+    public void printOutput(String input) {
+        System.out.println(input);
+    }
+
+    public void printOutput(String input, String pre, String post) {
+        System.out.println(pre + " " + input + " " + post);
     }
 }
