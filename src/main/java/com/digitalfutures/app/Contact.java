@@ -3,6 +3,9 @@ package com.digitalfutures.app;
 public class Contact {
 
     private String name;
+
+
+
     private String phoneNumber;
     private String email;
 
@@ -14,7 +17,7 @@ public class Contact {
     }
 
     private void checkValidation(String newName, String newPhone, String newEmail) {
-        Validator.validateString(newName);
+        Validator.validateName(newName);
         Validator.validatePhoneNumber(newPhone);
         Validator.validateEmail(newEmail);
     }
@@ -29,6 +32,21 @@ public class Contact {
 
     public String getEmail() {
         return email;
+    }
+
+    public void setName(String name) {
+        Validator.validateName(name);
+        this.name = name;
+    }
+
+    public void setNumber(String phoneNumber) {
+        Validator.validatePhoneNumber(phoneNumber);
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setEmail(String email) {
+        Validator.validateEmail(email);
+        this.email = email;
     }
 
     public boolean checkName(String input) {

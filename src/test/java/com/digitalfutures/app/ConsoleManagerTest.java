@@ -29,10 +29,10 @@ public class ConsoleManagerTest {
             String newName = testConsole.collectName(mockScanner);
 
             when(mockScanner.nextLine()).thenReturn("01234567890");
-            String newNumber = testConsole.collectName(mockScanner);
+            String newNumber = testConsole.collectNumber(mockScanner);
 
             when(mockScanner.nextLine()).thenReturn("J@Yahoo.co.uk");
-            String newEmail = testConsole.collectName(mockScanner);
+            String newEmail = testConsole.collectEmail(mockScanner);
             //Assert
             assertAll("Constructor set values to inputs",
                     () -> assertEquals(newName, "Jean"),

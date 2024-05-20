@@ -219,4 +219,21 @@ public class ContactTest {
         }
     }
 
+    @Nested
+    @DisplayName("Updating Contact tests")
+    class UpdateTests {
+        @Test
+        @DisplayName("Attempting to set a contacts properties to an invalid input throws an IllegalArgumentException")
+        public void SettingContactsPropertiesToInvalidInputsThrowsIllegalArgumentException() {
+            // Arrange
+            Contact testContact = new Contact("Finn", "24680246802", "Finn-Swim@aol.co.uk");
+            // Act
+            //Assert
+            assertAll("Constructor set values to inputs",
+                    () -> assertThrows(IllegalArgumentException.class, () -> {testContact.setName(" ");}),
+                    () -> assertThrows(IllegalArgumentException.class, () -> {testContact.setNumber("MyNumber");}),
+                    () -> assertThrows(IllegalArgumentException.class, () -> {testContact.setEmail("@myEmail.com");}));
+        }
+    }
+
 }
