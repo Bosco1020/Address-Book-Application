@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class AddressBookTest {
 
@@ -89,6 +88,25 @@ public class AddressBookTest {
             testBook.addContact(mockContact1);
             //Assert
             assertEquals(testBook.searchContacts("Joe"), null);
+        }
+    }
+    @Nested
+    @DisplayName("Address Book Edit Tests")
+    class BookEditTests {
+        @Test
+        @DisplayName("Can change the information of an existing contact in the address book")
+        public void canChangeInformationOfAnExistingContactInAddressBook() {
+            // Arrange
+            AddressBook testBook = new AddressBook();
+            String newName = "Dan";
+            // Act
+                // using a spy object rather than mocking so the setName method cna still be used
+            Contact spyContact = spy(new Contact("Juliet", "01234567891", "JB@Gmail.com"));
+            testBook.addContact(spyContact);
+                // returns all Contacts matching "Juliet" from book, gets the 1st and sets the name to newName
+            ((Contact)(testBook.searchContacts("Juliet").get(0))).setName(newName);
+            //Assert
+            assertEquals(((Contact)(testBook.searchContacts(newName).get(0))).getName(), newName);
         }
     }
 }
