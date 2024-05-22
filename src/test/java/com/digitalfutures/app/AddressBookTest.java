@@ -108,5 +108,19 @@ public class AddressBookTest {
             //Assert
             assertEquals(((Contact)(testBook.searchContacts(newName).get(0))).getName(), newName);
         }
+
+        @Test
+        @DisplayName("deleteContact() removes the inputted contact from the address book")
+        public void deleteContactRemovesTargetFromAddressBook() {
+            // Arrange
+            AddressBook testBook = new AddressBook();
+            // Act
+            Contact mockContact1 = mock(Contact.class);
+            testBook.addContact(mockContact1);
+
+            testBook.deleteContact(mockContact1);
+            //Assert
+            assertEquals(testBook.getContacts().size(), 0);
+        }
     }
 }

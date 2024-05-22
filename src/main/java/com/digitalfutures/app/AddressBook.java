@@ -21,4 +21,9 @@ public class AddressBook {
         if(output.size() > 0) return output; output = null; return output;
     }
 
+    public boolean deleteContact(Object target) {
+        if(this.contacts.remove(target)) return true;
+        return false;
+    }
+
 }
