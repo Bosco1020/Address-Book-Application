@@ -8,11 +8,18 @@ public class AddressBook {
 
     public void addContact(Object contact) {
         boolean duplicate = false;
-        for(Object c : this.contacts){ // Check if null for tests as Mocked objects default response is null
-            if(((Contact)contact).getEmail() != null && ((Contact)c).getEmail().equals(((Contact)contact).getEmail())) {
-                duplicate = true; }
-        }
+        for(Object c : this.contacts){
+            if(!duplicate) duplicate = checkDuplicate(contact, c); } // Don't want to accidentally set from true to false
         if(!duplicate) contacts.add(contact);
+    }
+
+    // Compares if the 1st contact is Null (which Mock objects return null),
+    // And compares emails & phone numbers, if either match then true
+    private boolean checkDuplicate(Object contact1, Object contact2) {
+        if(((Contact)contact1).getEmail() != null && (((Contact)contact2).getEmail().equals(((Contact)contact1).getEmail()) ||
+                ((Contact)contact2).getPhoneNumber().equals(((Contact)contact1).getPhoneNumber()))) {
+            return true; }
+        return false;
     }
 
     public ArrayList<Object> getContacts() {
