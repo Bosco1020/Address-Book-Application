@@ -122,5 +122,26 @@ public class AddressBookTest {
             //Assert
             assertEquals(testBook.getContacts().size(), 0);
         }
+        @Test
+        @DisplayName("deleteContact() returns true only if the target Contact was deleted")
+        public void deleteContactReturnsTrueIfContactWasDeleted() {
+            // Arrange
+            AddressBook testBook = new AddressBook();
+            // Act
+            Contact mockContact1 = mock(Contact.class);
+            Contact mockContact2 = mock(Contact.class);
+            Contact mockContact3 = mock(Contact.class);
+            testBook.addContact(mockContact1);
+            testBook.addContact(mockContact2);
+
+            Boolean result1 = testBook.deleteContact(mockContact1); // Succeeds
+            Boolean result2 = testBook.deleteContact(mockContact3); // Fails
+            //Assert
+            assertAll(
+                    () -> assertTrue(result1),
+                    () -> assertFalse(result2),
+                    () -> assertEquals(testBook.getContacts().size(), 1)
+            );
+        }
     }
 }
