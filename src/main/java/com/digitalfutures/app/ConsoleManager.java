@@ -11,6 +11,21 @@ public class ConsoleManager {
         return scanner.nextLine();
     }
 
+    public Object readInput(Scanner s) {
+        switch(s.nextLine()) {
+            case "View Contacts":
+                //view all contacts break;
+            case "New Contact":
+                // create new contact
+                Object newContact = new Contact(collectName(s), collectNumber(s), collectEmail(s));
+                return newContact;
+            case "Search -x-":
+                // Searching address book for contact(s) break;
+            default:
+                return null;
+        }
+    }
+
     // Collect methods read in inputs sor a contacts information and check they're valid.
     //If not they continue to ask for new inputs until a valid input is added.
     public String collectName(Scanner sc) {
