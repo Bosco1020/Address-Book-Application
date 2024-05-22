@@ -45,6 +45,23 @@ public class AddressBookTest {
                     () -> assertEquals(testBook.getContacts().get(1), mockContact2),
                     () -> assertEquals(testBook.getContacts().get(2), mockContact3));
         }
+        @Test
+        @DisplayName("Adding a Contact to the Address Book with a duplicate email results in the Contact not being added")
+        public void ContactWithDuplicateEmailCannotBeAddedToAddressBook() {
+            // Arrange
+            AddressBook testBook = new AddressBook();
+            // Act
+            Contact mockContact1 = mock(Contact.class);
+            when(mockContact1.getEmail()).thenReturn("Pg@Yahoo.co.uk");
+            when(mockContact1.getPhoneNumber()).thenReturn("11223344556");
+            Contact mockContact2 = mock(Contact.class);
+            when(mockContact2.getEmail()).thenReturn("Pg@Yahoo.co.uk");
+            when(mockContact2.getPhoneNumber()).thenReturn("01234567891");
+            testBook.addContact(mockContact1);
+            testBook.addContact(mockContact2);
+            //Assert
+            assertEquals(testBook.getContacts().size(), 1);
+        }
     }
 
     @Nested

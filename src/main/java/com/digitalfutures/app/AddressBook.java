@@ -7,7 +7,12 @@ public class AddressBook {
     ArrayList<Object> contacts = new ArrayList<Object>();
 
     public void addContact(Object contact) {
-        contacts.add(contact);
+        boolean duplicate = false;
+        for(Object c : this.contacts){ // Check if null for tests as Mocked objects default response is null
+            if(((Contact)contact).getEmail() != null && ((Contact)c).getEmail().equals(((Contact)contact).getEmail())) {
+                duplicate = true; }
+        }
+        if(!duplicate) contacts.add(contact);
     }
 
     public ArrayList<Object> getContacts() {
