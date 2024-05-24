@@ -134,7 +134,7 @@ public class AddressBookTest {
             AddressBook testBook = new AddressBook();
             String newName = "Dan";
             // Act
-                // using a spy object rather than mocking so the setName method cna still be used
+                // using a spy object rather than mocking so the setName method can still be used
             Contact spyContact = spy(new Contact("Juliet", "01234567891", "JB@Gmail.com"));
             testBook.addContact(spyContact);
                 // returns all Contacts matching "Juliet" from book, gets the 1st and sets the name to newName

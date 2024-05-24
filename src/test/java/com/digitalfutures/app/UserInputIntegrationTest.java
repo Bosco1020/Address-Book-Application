@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -21,18 +23,55 @@ public class UserInputIntegrationTest {
 
         @Test
         @DisplayName("Console input of \"New Contact\"  prompts the user to input a new Contacts info and returns the created Contact")
-        public void InputOfNewContactPromptsUserToInputCOntactDetailsAndReturnsContact() {
+        public void InputOfNewContactPromptsUserToInputContactDetailsAndReturnsContact() {
             // Arrange
-            ConsoleManager testConsole = new ConsoleManager();
+            Main spyMain = spy(Main.class);
+            AddressBook spyBook = spy(AddressBook.class);
             Scanner mockScanner = mock(Scanner.class);
             // Act
             when(mockScanner.nextLine()).thenReturn("New Contact", "Jean", "01234567890", "J@Yahoo.co.uk");
-            Object createdContact = testConsole.readInput(mockScanner);
+            spyMain.setScanner(mockScanner);
+            spyMain.setAddressBook(spyBook);
+
+            spyMain.readInput();
+
+            ArrayList<Object> result = spyBook.searchContacts("Jean");
             //Assert
             assertAll("Constructor set values to inputs",
-                    () -> assertEquals(((Contact)createdContact).getName(), "Jean"),
-                    () -> assertEquals(((Contact)createdContact).getPhoneNumber(), "01234567890"),
-                    () -> assertEquals(((Contact)createdContact).getEmail(), "J@Yahoo.co.uk"));
+                    () -> assertEquals(((Contact)result.get(0)).getName(), "Jean"),
+                    () -> assertEquals(((Contact)result.get(0)).getPhoneNumber(), "01234567890"),
+                    () -> assertEquals(((Contact)result.get(0)).getEmail(), "J@Yahoo.co.uk"));
+        }
+    }
+    @Nested
+    @DisplayName("Search Tests")
+    class SearchTests {
+
+        @Test
+        @DisplayName("Console input of \"Search -name-\"  prints all matches in the address book")
+        public void InputOfSearchNamePrintsAllMatchingContacts() {
+            // Arrange
+            Main spyMain = spy(Main.class);
+            AddressBook spyBook = spy(AddressBook.class);
+            Scanner mockScanner = mock(Scanner.class);
+            ConsoleManager spyConsole = spy(ConsoleManager.class);
+            // Act
+            Contact spyContact1 = spy(new Contact("Juliet", "01234567891", "JB@Gmail.com"));
+            spyBook.addContact(spyContact1);
+            Contact spyContact2 = spy(new Contact("David", "22222222222", "Dav-Id@mail.co.uk"));
+            spyBook.addContact(spyContact2);
+            Contact spyContact3 = spy(new Contact("Juliet", "98765432109", "J-B@Gmail.com"));
+            spyBook.addContact(spyContact3);
+
+            when(mockScanner.nextLine()).thenReturn("Search Juliet");
+            spyMain.setScanner(mockScanner);
+            spyMain.setAddressBook(spyBook);
+            spyMain.setConsole(spyConsole);
+
+            spyMain.readInput();
+
+            //Assert
+            Mockito.verify(spyConsole, times(2)).printOutput(any(), any(), any());
         }
     }
 }

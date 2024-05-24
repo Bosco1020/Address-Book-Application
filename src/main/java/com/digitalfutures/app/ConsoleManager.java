@@ -5,25 +5,8 @@ import java.util.Scanner;
 
 public class ConsoleManager {
 
-    Scanner scanner = new Scanner(System.in);
-
-    public String getInput() {
-        return scanner.nextLine();
-    }
-
-    public Object readInput(Scanner s) {
-        switch(s.nextLine()) {
-            case "View Contacts":
-                //view all contacts break;
-            case "New Contact":
-                // create new contact
-                Object newContact = new Contact(collectName(s), collectNumber(s), collectEmail(s));
-                return newContact;
-            case "Search -x-":
-                // Searching address book for contact(s) break;
-            default:
-                return null;
-        }
+    public String getInput(Scanner s) {
+        return s.nextLine();
     }
 
     // Collect methods read in inputs sor a contacts information and check they're valid.
@@ -57,9 +40,12 @@ public class ConsoleManager {
 
     public void printOutput(ArrayList<Object> inputs) {
         for(int i=0; i<inputs.size(); i++){
-            printOutput(((Contact)inputs.get(i)).getName(), "Name:", "");
-            printOutput(((Contact)inputs.get(i)).getPhoneNumber(), "Phone Number:", "");
-            printOutput(((Contact)inputs.get(i)).getEmail(), "Email Address:", "");
+
+            printOutput(
+                    "Phone Number: " + ((Contact)inputs.get(i)).getPhoneNumber() + ",",
+                    "Name: " + ((Contact)inputs.get(i)).getName() + ",",
+                    "Email Address: " + ((Contact)inputs.get(i)).getEmail() + ","
+            );
         }
     }
 
@@ -67,7 +53,7 @@ public class ConsoleManager {
         System.out.println(input);
     }
 
-    public void printOutput(String input, String pre, String post) {
-        System.out.println(pre + " " + input + " " + post);
+    public void printOutput(String centre, String pre, String post) {
+        System.out.println(pre + " " + centre + " " + post);
     }
 }

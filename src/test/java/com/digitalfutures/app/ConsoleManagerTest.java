@@ -93,7 +93,7 @@ public class ConsoleManagerTest {
 
             testConsole.printOutput(testContacts);
             //Assert
-            Mockito.verify(testConsole, times(9)).printOutput(any(), any(), any());
+            Mockito.verify(testConsole, times(3)).printOutput(any(), any(), any());
         }
     }
 }
