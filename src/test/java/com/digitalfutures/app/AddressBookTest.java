@@ -29,7 +29,7 @@ public class AddressBookTest {
 
         @Test
         @DisplayName("getContacts returns an array of every Contact stored in the Address Book")
-        public void AddressBookRetunsArrayOfAllContacts() {
+        public void AddressBookReturnsArrayOfAllContacts() {
             // Arrange
             AddressBook testBook = new AddressBook();
             // Act

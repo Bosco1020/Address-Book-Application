@@ -39,11 +39,4 @@ public class AddressBook {
     public boolean deleteContact(Object target) {
         return this.contacts.remove(target);
     }
-
-    public boolean removeContact(Object target) {
-        if (contacts.indexOf(target) == -1) return false;
-        contacts.remove(target);
-        return true;
-    }
-
 }

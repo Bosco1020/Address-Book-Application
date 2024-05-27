@@ -72,7 +72,7 @@ public class Main {
     private static void deleteContact() {
         Contact toEdit = getTarget();
         if(toEdit == null) return;
-        if(addressBook.removeContact(toEdit))
+        if(addressBook.deleteContact(toEdit))
         console.printOutput("Contact " + toEdit.getName() + " has been removed from the Address Book.");
         else console.printOutput("Contact not deleted. Please check you haven't already deleted the contact, or try to search for the target contact again.");
     }
@@ -98,28 +98,15 @@ public class Main {
     }
 
     // Setters mainly to facilitate testing
-    public static Scanner getScanner() {
-        return scanner;
-    }
-
     public static void setScanner(Scanner scanner) {
         Main.scanner = scanner;
-    }
-
-    public static ConsoleManager getConsole() {
-        return console;
     }
 
     public static void setConsole(ConsoleManager newConsole) {
         Main.console = newConsole;
     }
 
-    public static AddressBook getAddressBook() {
-        return addressBook;
-    }
-
     public static void setAddressBook(AddressBook addressBook) {
         Main.addressBook = addressBook;
     }
-
 }
