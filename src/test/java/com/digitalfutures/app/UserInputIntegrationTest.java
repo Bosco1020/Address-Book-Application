@@ -93,7 +93,7 @@ public class UserInputIntegrationTest {
             spyMain.readInput();
 
             //Assert
-            Mockito.verify(spyConsole, times(1)).printOutput("Sorry that name is invalid to search for.");
+            Mockito.verify(spyConsole, times(1)).printOutput("Sorry, please input a valid name to search for.");
         }
         @Test
         @DisplayName("Console input of \"Search -name-\" informs the user if there is no match")
@@ -365,7 +365,23 @@ public class UserInputIntegrationTest {
 
             spyMain.readInput();
             //Assert
-            Mockito.verify(spyConsole, times(7)).printOutput(anyString());
+            Mockito.verify(spyConsole, times(6)).printOutput(anyString());
+        }
+        @Test
+        @DisplayName("If the user doesn't input a valid command, the system should inform the user it's invalid")
+        public void SystemRespondsToInvalidCommands() {
+            // Arrange
+            Main spyMain = spy(Main.class);
+            Scanner mockScanner = mock(Scanner.class);
+            ConsoleManager spyConsole = spy(ConsoleManager.class);
+            // Act
+            when(mockScanner.nextLine()).thenReturn("Display Contacts");
+            spyMain.setScanner(mockScanner);
+            spyMain.setConsole(spyConsole);
+
+            spyMain.readInput();
+            //Assert
+            Mockito.verify(spyConsole, times(1)).printOutput("Invalid Input, type 'Help' to see a list of commands.");
         }
     }
 }

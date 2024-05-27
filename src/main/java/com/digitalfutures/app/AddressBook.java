@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class AddressBook {
 
-    ArrayList<Object> contacts = new ArrayList<Object>();
+    ArrayList<Object> contacts = new ArrayList<Object>(); // Using Object lists to try and reduce dependency
 
     public void addContact(Object contact) {
         boolean duplicate = false;
@@ -26,16 +26,18 @@ public class AddressBook {
         return contacts;
     }
 
+    // Loop through all contacts looking for matching name.
+    // If no match then output is empty so set null for easy identify, then return either way.
     public ArrayList<Object> searchContacts(String target) {
         ArrayList<Object> output = new ArrayList<Object>();
         for(Object contact : contacts) {
             if(((Contact)contact).getName().contains(target)) output.add(contact); }
-        if(output.size() > 0) return output; output = null; return output;
+        if(output.size() <= 0) output = null;
+        return output;
     }
 
     public boolean deleteContact(Object target) {
-        if(this.contacts.remove(target)) return true;
-        return false;
+        return this.contacts.remove(target);
     }
 
     public boolean removeContact(Object target) {
