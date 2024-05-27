@@ -60,6 +60,7 @@ public class Main {
         toEdit.setName(console.collectName(scanner, toEdit.getName()));
         toEdit.setNumber(console.collectNumber(scanner, toEdit.getPhoneNumber()));
         toEdit.setEmail(console.collectEmail(scanner, toEdit.getEmail()));
+        Main.console.printOutput(addressBook.searchContacts(toEdit.getName()));
     }
 
     private static Contact getTarget() {

@@ -224,5 +224,32 @@ public class UserInputIntegrationTest {
                     () -> assertEquals(((Contact)result.get(0)).getPhoneNumber(), "22222222222"),
                     () -> assertEquals(((Contact)result.get(0)).getEmail(), newEmail));
         }
+        @Test
+        @DisplayName("After editing a contact, its new information is printed to the console")
+        public void InputOfEditContactPrintsNewInformationToConsoleAfter() {
+            // Arrange
+            Main spyMain = spy(Main.class);
+            AddressBook spyBook = spy(AddressBook.class);
+            Scanner mockScanner = mock(Scanner.class);
+            ConsoleManager spyConsole = spy(ConsoleManager.class);
+
+            String newName = "Sam";
+            String newNumber = " ";
+            String newEmail = "SamE@Gamil.com";
+            // Act
+            Contact spyContact1 = spy(new Contact("Samuel", "22222222222", "Sammy@mail.co.uk"));
+            spyBook.addContact(spyContact1);
+
+            when(mockScanner.nextLine()).thenReturn("Search Samuel", "Edit Contact", newName, newNumber, newEmail);
+            spyMain.setScanner(mockScanner);
+            spyMain.setAddressBook(spyBook);
+            spyMain.setConsole(spyConsole);
+
+            spyMain.readInput();
+            spyMain.readInput();
+
+            //Assert
+            Mockito.verify(spyConsole, times(2)).printOutput(any(), any(), any());
+        }
     }
 }
