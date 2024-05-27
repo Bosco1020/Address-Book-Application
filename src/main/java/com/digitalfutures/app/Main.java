@@ -40,9 +40,9 @@ public class Main {
     private static void searchContacts(String name) {
         if(!Validator.checkName(name)) { console.printOutput("Sorry that name is invalid to search for."); name = console.collectName(scanner); }
         ArrayList<Object> result = Main.addressBook.searchContacts(name);
-        if(result.isEmpty()) {
+        if(result == null || result.isEmpty()) {
             // No match, report
-
+            console.printOutput("Sorry there was no match for that name.");
         }
         else {
             Main.console.printOutput(result);

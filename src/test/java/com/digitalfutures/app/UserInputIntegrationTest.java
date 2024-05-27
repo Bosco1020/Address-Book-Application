@@ -75,7 +75,7 @@ public class UserInputIntegrationTest {
         }
         @Test
         @DisplayName("Console input of \"Search -name-\" requests new input until name is valid")
-        public void InputOfSearchNameRequestNewInputUntilValid() {
+        public void InputOfSearchNameRequestsNewInputUntilValid() {
             // Arrange
             Main spyMain = spy(Main.class);
             AddressBook spyBook = spy(AddressBook.class);
@@ -94,6 +94,28 @@ public class UserInputIntegrationTest {
 
             //Assert
             Mockito.verify(spyConsole, times(1)).printOutput("Sorry that name is invalid to search for.");
+        }
+        @Test
+        @DisplayName("Console input of \"Search -name-\" informs the user if there is no match")
+        public void InputOfSearchNameInformsUserIfNoMatch() {
+            // Arrange
+            Main spyMain = spy(Main.class);
+            AddressBook spyBook = spy(AddressBook.class);
+            Scanner mockScanner = mock(Scanner.class);
+            ConsoleManager spyConsole = spy(ConsoleManager.class);
+            // Act
+            Contact spyContact1 = spy(new Contact("Juliet", "01234567891", "JB@Gmail.com"));
+            spyBook.addContact(spyContact1);
+
+            when(mockScanner.nextLine()).thenReturn("Search Daniel");
+            spyMain.setScanner(mockScanner);
+            spyMain.setAddressBook(spyBook);
+            spyMain.setConsole(spyConsole);
+
+            spyMain.readInput();
+
+            //Assert
+            Mockito.verify(spyConsole, times(1)).printOutput("Sorry there was no match for that name.");
         }
     }
 }
