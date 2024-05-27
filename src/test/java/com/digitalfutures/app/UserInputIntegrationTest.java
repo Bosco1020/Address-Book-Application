@@ -315,5 +315,38 @@ public class UserInputIntegrationTest {
             //Assert
             assertEquals(spyBook.getContacts().size(), 2);
         }
+        @Test
+        @DisplayName("If there's multiple contacts viewed, user must designate which to delete")
+        public void InputOfDeleteContactPromptsForSelectionIfMultipleContactsViewed() {
+            // Arrange
+            Main spyMain = spy(Main.class);
+            AddressBook spyBook = spy(AddressBook.class);
+            Scanner mockScanner = mock(Scanner.class);
+            ConsoleManager spyConsole = spy(ConsoleManager.class);
+            // Act
+            Contact spyContact1 = spy(new Contact("David", "22222222222", "Dav-Id@mail.co.uk"));
+            spyBook.addContact(spyContact1);
+
+            Contact spyContact2 = spy(new Contact("David", "01234567891", "Dav@Yahoo.com"));
+            spyBook.addContact(spyContact2);
+
+            when(mockScanner.nextLine()).thenReturn("Search David", "Delete Contact", "2");
+            spyMain.setScanner(mockScanner);
+            spyMain.setAddressBook(spyBook);
+            spyMain.setConsole(spyConsole);
+
+            spyMain.readInput();
+            spyMain.readInput();
+
+            //Assert
+            ArrayList<Object> result = spyBook.getContacts();
+
+            assertAll("Constructor set values to inputs",
+                    () -> assertEquals(result.size(), 1),
+                    () -> assertEquals(((Contact)result.get(0)).getName(), "David"),
+                    () -> assertEquals(((Contact)result.get(0)).getPhoneNumber(), "22222222222"),
+                    () -> assertEquals(((Contact)result.get(0)).getEmail(), "Dav-Id@mail.co.uk"));
+        }
+
     }
 }
