@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         // Print Start info
-
+        console.printHelp();
         // wait for input & act
         readInput();
 
@@ -23,8 +23,7 @@ public class Main {
         String read = scanner.nextLine();
         if(read.equalsIgnoreCase("View Contacts")) {
             //view all contacts
-            console.printOutput(addressBook.getContacts());
-             }
+            console.printOutput(addressBook.getContacts()); }
         if(read.equalsIgnoreCase("New Contact")) {
             // make new contact & add to book
             newContact(); }
@@ -33,13 +32,13 @@ public class Main {
             searchContacts(read.substring(7)); }
         if(read.equalsIgnoreCase("Edit Contact")) {
             // edit current contact information
-            editContact();
-             }
+            editContact(); }
         if(read.equalsIgnoreCase("Delete Contact")) {
             // Delete current contact
              deleteContact(); }
         // default
-
+        console.printOutput("Invalid Input, see below for valid commands.");
+        console.printHelp();
     }
 
     private static void newContact() {

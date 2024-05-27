@@ -347,6 +347,25 @@ public class UserInputIntegrationTest {
                     () -> assertEquals(((Contact)result.get(0)).getPhoneNumber(), "22222222222"),
                     () -> assertEquals(((Contact)result.get(0)).getEmail(), "Dav-Id@mail.co.uk"));
         }
+    }
+    @Nested
+    @DisplayName("Help Tests")
+    class HelpTests {
+        @Test
+        @DisplayName("Console input of \"Help\"  gives a list of all valid commands")
+        public void InputOfHelpShowsListOfCommands() {
+            // Arrange
+            Main spyMain = spy(Main.class);
+            Scanner mockScanner = mock(Scanner.class);
+            ConsoleManager spyConsole = spy(ConsoleManager.class);
+            // Act
+            when(mockScanner.nextLine()).thenReturn("Help");
+            spyMain.setScanner(mockScanner);
+            spyMain.setConsole(spyConsole);
 
+            spyMain.readInput();
+            //Assert
+            Mockito.verify(spyConsole, times(7)).printOutput(anyString());
+        }
     }
 }

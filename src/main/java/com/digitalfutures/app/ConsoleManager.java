@@ -94,4 +94,13 @@ public class ConsoleManager {
     public void printOutput(String centre, String pre, String post) {
         System.out.println(pre + " " + centre + " " + post);
     }
+
+    public void printHelp() {
+        printOutput("- To view all contacts, please type: 'View Contacts'.");
+        printOutput("- To search for a specific contact, please type: 'Search ' followed by the name of the contact you're looking for.");
+        printOutput("- To add a new contact, please type: 'New Contact' and follow the instructions.");
+        printOutput("- To edit an existing contact, please use the 'Search' function to find the contact, then type: 'Edit Contact' and follow the instructions.");
+        printOutput("- To delete an existing contact, please use the 'Search' function to find the contact, then type: 'Delete Contact'.");
+        printOutput("If you wish to see these commands again, type 'Help'.");
+    }
 }
