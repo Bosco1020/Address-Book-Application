@@ -52,4 +52,11 @@ public class Validator {
         }
         return true;
     }
+
+    public static boolean checkInteger(String input) {
+        if(input == null || !input.matches("\\b([0-9]|[1-9][0-9])\\b")){
+            return false;
+        }
+        return true;
+    }
 }

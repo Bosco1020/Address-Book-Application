@@ -118,4 +118,41 @@ public class UserInputIntegrationTest {
             Mockito.verify(spyConsole, times(1)).printOutput("Sorry there was no match for that name.");
         }
     }
+    @Nested
+    @DisplayName("Edit Tests")
+    class EditTests {
+
+        @Test
+        @DisplayName("Console input of \"Edit Contact\"  prompts the user to update each field of the current contact from \"Search\"")
+        public void InputOfEditContactPromptsForUpdatignEachFieldOfCurrentContact() {
+            // Arrange
+            Main spyMain = spy(Main.class);
+            AddressBook spyBook = spy(AddressBook.class);
+            Scanner mockScanner = mock(Scanner.class);
+            ConsoleManager spyConsole = spy(ConsoleManager.class);
+
+            String newName = "Dave";
+            String newNumber = "12345678901";
+            String newEmail = "David@Gamil.com";
+            // Act
+            Contact spyContact1 = spy(new Contact("David", "22222222222", "Dav-Id@mail.co.uk"));
+            spyBook.addContact(spyContact1);
+
+            when(mockScanner.nextLine()).thenReturn("Search David", "Edit Contact", newName, newNumber, newEmail);
+            spyMain.setScanner(mockScanner);
+            spyMain.setAddressBook(spyBook);
+            spyMain.setConsole(spyConsole);
+
+            spyMain.readInput();
+            spyMain.readInput();
+
+            //Assert
+            ArrayList<Object> result = spyBook.searchContacts(newName);
+
+            assertAll("Constructor set values to inputs",
+                    () -> assertEquals(((Contact)result.get(0)).getName(), newName),
+                    () -> assertEquals(((Contact)result.get(0)).getPhoneNumber(), newNumber),
+                    () -> assertEquals(((Contact)result.get(0)).getEmail(), newEmail));
+        }
+    }
 }

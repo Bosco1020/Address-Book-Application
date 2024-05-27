@@ -38,6 +38,15 @@ public class ConsoleManager {
         return response;
     }
 
+    public int collectInteger(Scanner s) {
+        String input = getInput(s);
+        while(!Validator.checkInteger(input)) {
+            printOutput("Please enter a valid integer for the target Contact (e.g. 1, 2 etc");
+            input = getInput(s);
+        }
+        return Integer.parseInt(input);
+    }
+
     public void printOutput(ArrayList<Object> inputs) {
         for(int i=0; i<inputs.size(); i++){
 

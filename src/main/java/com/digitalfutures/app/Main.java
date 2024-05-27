@@ -9,6 +9,8 @@ public class Main {
     private static ConsoleManager console = new ConsoleManager();
     private static AddressBook addressBook = new AddressBook();
 
+    private static ArrayList<Object> currentContacts;
+
     public static void main(String[] args) {
         // Print Start info
 
@@ -28,6 +30,10 @@ public class Main {
         if(read.contains("Search ") || read.contains("search")) {
             // Search & display contact(s)
             searchContacts(read.substring(7)); }
+        if(read.equalsIgnoreCase("Edit Contact")) {
+            // edit current contact information
+            editContact();
+             }
         // default
 
     }
@@ -42,11 +48,17 @@ public class Main {
         ArrayList<Object> result = Main.addressBook.searchContacts(name);
         if(result == null || result.isEmpty()) {
             // No match, report
-            console.printOutput("Sorry there was no match for that name.");
-        }
+            console.printOutput("Sorry there was no match for that name."); }
         else {
             Main.console.printOutput(result);
-        }
+            currentContacts = result; }
+    }
+
+    private static void editContact() {
+        Contact toEdit = ((Contact)currentContacts.get(0));
+        toEdit.setName(console.collectName(scanner));
+        toEdit.setNumber(console.collectNumber(scanner));
+        toEdit.setEmail(console.collectEmail(scanner));
     }
 
     public static Scanner getScanner() {
