@@ -81,6 +81,10 @@ Domain models created from User Stories, ordered to match up with corresponding 
 ![Domain Models](./images/domain_models_5.jpg)![Domain Models](./images/domain_models_6.jpg)
 ![Domain Models](./images/domain_models_7.jpg)![Domain Models](./images/domain_models_8.jpg)
 
+## Class Diagram
+From the constructed Domain Models, below is a class diagram of the entire system:
+![Class Diagram](./images/Class_Diagram.png)
+
 ## Kanban Board
 Screenshots of the Kanban board I used to structure the development process:
 ![Kanban Board](./images/Kanban_Board_1.jpg)
