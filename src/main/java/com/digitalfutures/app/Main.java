@@ -15,8 +15,8 @@ public class Main {
         // Print Start info
         console.printHelp();
         // wait for input & act
-        readInput();
-
+        while(true) {
+        readInput(); }
     }
 
     // Interprets User Input and calls appropriate methods.
@@ -24,7 +24,7 @@ public class Main {
         String read = scanner.nextLine();
         if(read.equalsIgnoreCase("View Contacts")) {
             //view all contacts
-            console.printOutput(addressBook.getContacts()); return; }
+            viewContacts(); return; }
         if(read.equalsIgnoreCase("New Contact")) {
             // make new contact & add to book
             newContact(); return; }
@@ -75,6 +75,12 @@ public class Main {
         if(addressBook.removeContact(toEdit))
         console.printOutput("Contact " + toEdit.getName() + " has been removed from the Address Book.");
         else console.printOutput("Contact not deleted. Please check you haven't already deleted the contact, or try to search for the target contact again.");
+    }
+
+    private static void viewContacts() {
+        if(currentContacts.size() <= 0){
+            console.printOutput("There are currently no Contacts in the Address Book."); return; }
+        console.printOutput(addressBook.getContacts());
     }
 
     // If multiple search results, method interprets User Input into Integer for identify target index to Edit/Delete

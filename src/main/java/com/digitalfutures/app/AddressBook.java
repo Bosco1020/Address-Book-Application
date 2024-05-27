@@ -19,7 +19,7 @@ public class AddressBook {
         if(((Contact)contact1).getEmail() != null && (((Contact)contact2).getEmail().equals(((Contact)contact1).getEmail()) ||
                 ((Contact)contact2).getPhoneNumber().equals(((Contact)contact1).getPhoneNumber()))) {
             return true; }
-        return false;
+        System.out.println("A contact with these details already exists, please try again or check your details."); return false;
     }
 
     public ArrayList<Object> getContacts() {

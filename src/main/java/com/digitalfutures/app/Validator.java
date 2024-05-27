@@ -11,23 +11,17 @@ public class Validator {
 
     public static void validateName(String input){
         validateString(input);
-        if(!input.matches("([a-zA-Z0-9_\\s]+)")) {
-            throw new IllegalArgumentException("Property cannot be null or empty");
-        }
+        if(!checkName(input)) throw new IllegalArgumentException("Property cannot be null or empty");
     }
 
     public static void validatePhoneNumber(String input) {
         validateString(input);
-        if(!input.matches("^[+][0-9]{11,13}$|[0-9]{11}$")){
-            throw new IllegalArgumentException("Property cannot be null or empty");
-        }
+        if(!checkPhoneNumber(input)) throw new IllegalArgumentException("Property cannot be null or empty");
     }
 
     public static void validateEmail(String input){
         validateString(input);
-        if(!input.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")){
-            throw new IllegalArgumentException("Property cannot be null or empty");
-        }
+        if(!checkEmail(input)) throw new IllegalArgumentException("Property cannot be null or empty");
     }
 
     // Check methods also validate inputs but rather than throwing an exception, return a boolean.
