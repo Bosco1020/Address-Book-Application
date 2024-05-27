@@ -20,6 +20,16 @@ public class ConsoleManager {
         return response;
     }
 
+    public String collectName(Scanner sc, String original) {
+        System.out.println("Please Enter the Contacts Name");
+        String response = sc.nextLine();
+        while(!Validator.checkName(response)) {
+            if(response.trim().isEmpty()) return original;
+            System.out.println("The Name is invalid. Please try again");
+            response = sc.nextLine(); }
+        return response;
+    }
+
     public String collectNumber(Scanner sc) {
         System.out.println("Please Enter the Contacts Phone Number");
         String response = sc.nextLine();
@@ -29,10 +39,30 @@ public class ConsoleManager {
         return response;
     }
 
+    public String collectNumber(Scanner sc, String original) {
+        System.out.println("Please Enter the Contacts Phone Number");
+        String response = sc.nextLine();
+        while(!Validator.checkPhoneNumber(response)) {
+            if(response.trim().isEmpty()) return original;
+            System.out.println("The Phone Number is invalid. Please try again");
+            response = sc.nextLine(); }
+        return response;
+    }
+
     public String collectEmail(Scanner sc) {
         System.out.println("Please Enter the Contacts Email Address");
         String response = sc.nextLine();
         while(!Validator.checkEmail(response)) {
+            System.out.println("The Email Address is invalid. Please try again");
+            response = sc.nextLine(); }
+        return response;
+    }
+
+    public String collectEmail(Scanner sc, String original) {
+        System.out.println("Please Enter the Contacts Email Address");
+        String response = sc.nextLine();
+        while(!Validator.checkEmail(response)) {
+            if(response.trim().isEmpty()) return original;
             System.out.println("The Email Address is invalid. Please try again");
             response = sc.nextLine(); }
         return response;

@@ -154,5 +154,75 @@ public class UserInputIntegrationTest {
                     () -> assertEquals(((Contact)result.get(0)).getPhoneNumber(), newNumber),
                     () -> assertEquals(((Contact)result.get(0)).getEmail(), newEmail));
         }
+        @Test
+        @DisplayName("If there's multiple contacts viewed, user must designate which to edit")
+        public void InputOfEditContactPromptsForSelectionIfMultipleContactsViewed() {
+            // Arrange
+            Main spyMain = spy(Main.class);
+            AddressBook spyBook = spy(AddressBook.class);
+            Scanner mockScanner = mock(Scanner.class);
+            ConsoleManager spyConsole = spy(ConsoleManager.class);
+
+            String newName = "Dave";
+            String newNumber = "12345678901";
+            String newEmail = "David@Gamil.com";
+            // Act
+            Contact spyContact1 = spy(new Contact("David", "22222222222", "Dav-Id@mail.co.uk"));
+            spyBook.addContact(spyContact1);
+
+            Contact spyContact2 = spy(new Contact("David", "01234567891", "Dav@Yahoo.com"));
+            spyBook.addContact(spyContact2);
+
+            when(mockScanner.nextLine()).thenReturn("Search David", "Edit Contact", "2", newName, newNumber, newEmail);
+            spyMain.setScanner(mockScanner);
+            spyMain.setAddressBook(spyBook);
+            spyMain.setConsole(spyConsole);
+
+            spyMain.readInput();
+            spyMain.readInput();
+
+            //Assert
+            ArrayList<Object> result = spyBook.getContacts();
+
+            assertAll("Constructor set values to inputs",
+                    () -> assertEquals(((Contact)result.get(1)).getName(), newName),
+                    () -> assertEquals(((Contact)result.get(1)).getPhoneNumber(), newNumber),
+                    () -> assertEquals(((Contact)result.get(1)).getEmail(), newEmail),
+                    () -> assertEquals(((Contact)result.get(0)).getName(), "David"),
+                    () -> assertEquals(((Contact)result.get(0)).getPhoneNumber(), "22222222222"),
+                    () -> assertEquals(((Contact)result.get(0)).getEmail(), "Dav-Id@mail.co.uk"));
+        }
+        @Test
+        @DisplayName("Leaving a field blank when editing a contact doesn't change that property of the contact")
+        public void InputOfEditContactInterpretsBlankInputsAsMaintainingCurrentProperty() {
+            // Arrange
+            Main spyMain = spy(Main.class);
+            AddressBook spyBook = spy(AddressBook.class);
+            Scanner mockScanner = mock(Scanner.class);
+            ConsoleManager spyConsole = spy(ConsoleManager.class);
+
+            String newName = "Dave";
+            String newNumber = " ";
+            String newEmail = "David@Gamil.com";
+            // Act
+            Contact spyContact1 = spy(new Contact("David", "22222222222", "Dav-Id@mail.co.uk"));
+            spyBook.addContact(spyContact1);
+
+            when(mockScanner.nextLine()).thenReturn("Search David", "Edit Contact", newName, newNumber, newEmail);
+            spyMain.setScanner(mockScanner);
+            spyMain.setAddressBook(spyBook);
+            spyMain.setConsole(spyConsole);
+
+            spyMain.readInput();
+            spyMain.readInput();
+
+            //Assert
+            ArrayList<Object> result = spyBook.searchContacts(newName);
+
+            assertAll("Constructor set values to inputs",
+                    () -> assertEquals(((Contact)result.get(0)).getName(), newName),
+                    () -> assertEquals(((Contact)result.get(0)).getPhoneNumber(), "22222222222"),
+                    () -> assertEquals(((Contact)result.get(0)).getEmail(), newEmail));
+        }
     }
 }

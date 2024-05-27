@@ -55,10 +55,24 @@ public class Main {
     }
 
     private static void editContact() {
-        Contact toEdit = ((Contact)currentContacts.get(0));
-        toEdit.setName(console.collectName(scanner));
-        toEdit.setNumber(console.collectNumber(scanner));
-        toEdit.setEmail(console.collectEmail(scanner));
+        Contact toEdit = getTarget();
+        if(toEdit == null) return;
+        toEdit.setName(console.collectName(scanner, toEdit.getName()));
+        toEdit.setNumber(console.collectNumber(scanner, toEdit.getPhoneNumber()));
+        toEdit.setEmail(console.collectEmail(scanner, toEdit.getEmail()));
+    }
+
+    private static Contact getTarget() {
+        switch(currentContacts.size()) {
+            case 0:
+                console.printOutput("Please use the Search command to find the Contact to Edit");
+                return null;
+            case 1:
+                return ((Contact)currentContacts.get(0));
+            default: {
+                console.printOutput("Please designate which of these contacts you wish to edit by typing in number 1 to " + currentContacts.size() + ".");
+                return ((Contact)currentContacts.get(console.collectInteger(scanner)-1)); }
+        }
     }
 
     public static Scanner getScanner() {
