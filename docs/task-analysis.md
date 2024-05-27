@@ -1,48 +1,58 @@
-# Airport Challenge
+# Address Book Challenge
 ## Introduction
-The days of hoarding stacks of money under your mattress are gone, in modern times almost every person has a bank account to manage their finances instead. Banking is an essential part of modern life with it controlling your access to your own money, but in order to maintain security it can be rather cumbersome. Traveling to a bank and waiting in a que just to withdraw £5 for an ice cream sounds like a hassle, so what if there was another way. Introducing this application which can revolutionise the way banking is done.
+Recording your contacts on pen and paper if effective, but wouldn’t it be easier to have all your contacts information at your fingertips?  This application aims to provide an environment where you can store and search through all your contacts, maintaining a personal address book with an easy-to-use console interface. 
 
 ## The Problems
-As someone with a bank account, the ability to perform your online banking remotely can provide some extremely large benefits to both the users and the company.
+When your list of contacts grows over the years, maintaining an easy-to-use repository of them can become a hassle.
 
-- **Difficulty maintaining enough branches for user access?** Whenever someone with a bank account want to withdraw or deposit any amount, even £5, they need to commute to a bank branch. This puts pressure on the company to ensure users have a branch nearby that's open most of the day so competitors can't steal your clients, however this much be highly costly. By allowing your customers to perform some simple banking through tis console application, the number of people needing to commute to a bank physically decreases, giving an opportunity to save costs.
-
-- **Do your customers need to access their accounts quickly?** By providing a digital service available on an electronic device, users can have much quicker access to their accounts than if they went to a bank in person. This results in a much more pleasurable experience from the user as they save time and can complete the task far easier.
-
-- **Need an advantage over competitors?** Promoting this software and giving access to your customers is a strong advertising tool that may help the company hold a larger share of the market. The software is easy to use and provides quick access to all a user's daily requirements, by advertising this it's sure to grab the attention of potential customers and show the appeal of moving their account to your bank.
+- **Too Many Contacts?** As you add contacts over the years, maintaining an easy-to-read list of alphabetical names can become a difficult task. Even if you succeed, it can still take several minutes to find the information you need. With the address book, all it takes is a quick search of a contacts name to see a list of every match within your address book, taking only seconds to get that important information.
 
 
-### Documented Functionality
-Based on the requirements provided by the BoDF, a set of functionalities have been identified that the software must be able to perform. The software will:
-- Allow the access and ability to view a user's account,
-- Facilitate the addition or subtraction of funds from the account,
-- Regulate the accounts total funds between all transactions,
+- **Need Information Fast?** Using the simple commands through the console interface, it takes only a few seconds to get the information needed. Whether you wish to see a list of all contacts in the address book, or search for a specific name, the software can show an orderly list of all their information through a few short commands.
+
+
+- **Want to Update Details?** People change phone numbers and get new email addresses, but making these changes constantly can ruin a neatly ordered address book. With this digital application, a contacts information can quickly be adjusted however many times necessary. 
+
+
+## Documented Functionality
+Based on the requirements provided by the DFCorp, a set of functionalities have been identified that the software must be able to perform. The software will:
+- Hold a record of all the users Contacts and their information,
+- Perform logical validation of inputs to reduce accidental errors,
+- Provide a console interface for easy interaction and manipulation of the address book data,
 
 
 ## The Software’s Benefits
-With these features implemented, the software will be able to function as an effective console banking system, which the user can use to facilitate their banking needs, such as:
+With these features implemented, the software will be able to function as a convenient address book with a quick and simple interface for the users ease of use:
 
-- By ensuring the console app enforces a simple and readable design layout, all information to the user is displayed in an easy to digest manner. By doing this, it ensures users won't get put off from having difficulty in obtaining the information they're looking for and thus helps ensure their perception of the app is a positive one.
+- With layers of validation embedded within the software, it helps ensure that the user  only enters valid information for a contact. This helps protect against any accidental mis-inputs from the user and provides a layer of protection to ensure nothing goes wrong with the software which could cause it to crash.
 
-- With one command, the software can provide a detailed documentation of your account's history and current available funds. Whether a user wants to check a payment went through, or is worried about going into debt, the software provides an easy method to give these users their answers in a swift manner.
+- Though the software has no immediate security in place for user verification or data encryption, it has the added benefit of being disconnected from the internet. Unlike other applications that can store information on a contact such as a mobile phone, this software isn’t connected directly to the internet and as such is at a lower risk of being targeted by internet users with malicious intentions of stealing personal data.
 
-- The software has a simple but easily expandable design, fulfilling all current functionality but with plenty of room for expansion. As the company wishes to add more functionality to the software and new requirements are identified, they can be easily added to the software’s core functionality. This allows it to be adjusted into the future to always meet the users’ needs and keep the software updated to be the best on the market.
+- By requiring the user to search for a contact before being able to edit or delete any information, it provides a level of security to ensure no mistakes happen. Inputting the delete or edit commands without first searching for a contact won’t invoke any change in the contacts, helping protect against unwanted alterations. 
 
 
 ## Associated Risks
 As with all tools, the software will come with some risks that have been identified below.
 
-- By providing external access to a user's account, it could also be an entry point for malicious users and become a vulnerability in the software. It's no surprise that there are some people who would look to abuse the access this app grants to alter account funds in a malicious manner. It would be wise to have a software security professional assist in the development of the application to ensure proper security of both the users and companies funds.
+- The address book requires no credentials or log-in information to access its contents. Anyone with access to the software could view all the information stored about each of the user’s contacts. This risks exposing sensitive information about the user’s contacts and should be considered when thinking about security of the software.
 
-- The software failing is another risk as the hardware used to run the software is always at risk of power outages, environmental factors, and user mistakes. Any number of reasons can cause the software to fail, including issues outside of the hardware. If this occurs then not only may access to user's accounts be disrupted, but worst case scenario they may even have their account altered by some corruption.
+- The software failing is another risk as the hardware used to run the software is always at risk of power outages, environmental factors, and user mistakes. Any number of reasons can cause the software to fail, including issues outside of the hardware. If this occurs then there’s a risk of data corruption or loss, which can result  in the loss or alteration of contacts information from the address book.
 
-- With all this functionality being implemented within the software, there's the chance that it may not perform a task from a user as expected. Whether its unexpected data type being used, an error in how the software handles various exceptions, or a miss-input from the user resulting in a transaction they hadn't desired, these accidents can have serious ramifications of a user's account information.
+
+## Impact on Business
+In comparison to recording a list of contact information manually, this software provides a convenient service many wish to have access to. The impact on the business could be varied, some of which are discussed below:
+
+- **Glaring Competitors:** In the modern age, most people already have a method of storing vast amount of information on their various contacts. Most phones now record not only the name and phone number of their contacts, but can store their emails, birthdays, addresses and various other pieces of information. In reality this software is redundant in today’s world where everyone has a computer in their pocket already performing these actions. As such, this software wouldn’t provide much if any exposure for the company and most likely be ignored by the wider world.
+
+
+- **Backlash from Security Concerns:** As described in the risks section, the software currently has no security measures in place to verify the user and control access to the address book. As a result, the information of all a user’s contacts is easily accessible by anyone, and this glaring security fault could be the source of immense backlash from users after installation.
 
 
 ## Conclusion
-By giving out software with direct access to user's bank accounts, you obviously invite malicious users who would looks to exploit this boon. However, the benefits of this software are great for both the users and the company. By providing a quick and easy way to conduct simple banking, users can have a more pleasant experience with not needing to spend as much time traveling to a bank. This also benefits the company, with the need to physical branch banks reducing there would be ways to save costs.
+With its simple and convenient console input design, the software acts as a great way for users to store their personal contacts information on their own machines. However, in the modern age there already exists many other methods of performing the exact same functionality that are far more practical, convenient, and secure.
 
-The software’s documented functionality covers all of the BoDF's listed requirements, but with its simple and robust framework it has potential to be expanded for future functionality the bank may wish to supply. So long as the risks are understood and protected against, this application will be an amazing addition to the companies feature set.
+Expanding upon the core functionality with a user interface, adding security measures and additional functionality that makes the software unique from its competitors may enable it to stand out in an already dense market. In likelihood however, this software holds very little place where almost every mobile phone performs the same functionality out of the box.
+
 
 
 <br><br>

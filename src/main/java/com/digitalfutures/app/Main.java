@@ -24,10 +24,10 @@ public class Main {
         String read = scanner.nextLine();
         if(read.equalsIgnoreCase("View Contacts")) {
             //view all contacts
-            viewContacts(); return; }
+            viewContacts(); currentContacts = null; return; }
         if(read.equalsIgnoreCase("New Contact")) {
             // make new contact & add to book
-            newContact(); return; }
+            newContact(); currentContacts = null; return; }
         if(read.contains("Search ") || read.contains("search")) {
             // Search & display contact(s)
             searchContacts(read.substring(7)); return; }
@@ -39,7 +39,7 @@ public class Main {
              deleteContact(); return; }
         if(read.equalsIgnoreCase("Help")) {
             // Delete current contact
-            console.printHelp(); return; }
+            console.printHelp(); currentContacts = null; return; }
         // default
         console.printOutput("Invalid Input, type 'Help' to see a list of commands.");
     }
