@@ -21,8 +21,9 @@ public class Main {
 
     public static void readInput() {
         String read = scanner.nextLine();
-        if(read.equalsIgnoreCase("View Contact")) {
+        if(read.equalsIgnoreCase("View Contacts")) {
             //view all contacts
+            console.printOutput(addressBook.getContacts());
              }
         if(read.equalsIgnoreCase("New Contact")) {
             // make new contact & add to book

@@ -121,10 +121,9 @@ public class UserInputIntegrationTest {
     @Nested
     @DisplayName("Edit Tests")
     class EditTests {
-
         @Test
         @DisplayName("Console input of \"Edit Contact\"  prompts the user to update each field of the current contact from \"Search\"")
-        public void InputOfEditContactPromptsForUpdatignEachFieldOfCurrentContact() {
+        public void InputOfEditContactPromptsForUpdatingEachFieldOfCurrentContact() {
             // Arrange
             Main spyMain = spy(Main.class);
             AddressBook spyBook = spy(AddressBook.class);
@@ -250,6 +249,38 @@ public class UserInputIntegrationTest {
 
             //Assert
             Mockito.verify(spyConsole, times(2)).printOutput(any(), any(), any());
+        }
+    }
+    @Nested
+    @DisplayName("View Tests")
+    class ViewTests {
+        @Test
+        @DisplayName("Console input of \"View Contacts\"  displays a list of each Contact in the Address Book")
+        public void InputOfViewContactsPrintsAllContactsToTheConsole() {
+            // Arrange
+            Main spyMain = spy(Main.class);
+            AddressBook spyBook = spy(AddressBook.class);
+            Scanner mockScanner = mock(Scanner.class);
+            ConsoleManager spyConsole = spy(ConsoleManager.class);
+            // Act
+            Contact spyContact1 = spy(new Contact("David", "22222222222", "Dav-Id@mail.co.uk"));
+            spyBook.addContact(spyContact1);
+
+            Contact spyContact2 = spy(new Contact("Samuel", "12345678901", "Sammy@mail.co.uk"));
+            spyBook.addContact(spyContact2);
+
+            Contact spyContact3 = spy(new Contact("Arri", "01133557799", "Arr-I@Aol.fr"));
+            spyBook.addContact(spyContact3);
+
+            when(mockScanner.nextLine()).thenReturn("View Contacts");
+            spyMain.setScanner(mockScanner);
+            spyMain.setAddressBook(spyBook);
+            spyMain.setConsole(spyConsole);
+
+            spyMain.readInput();
+
+            //Assert
+            Mockito.verify(spyConsole, times(3)).printOutput(any(), any(), any());
         }
     }
 }

@@ -79,7 +79,6 @@ public class ConsoleManager {
 
     public void printOutput(ArrayList<Object> inputs) {
         for(int i=0; i<inputs.size(); i++){
-
             printOutput(
                     "Phone Number: " + ((Contact)inputs.get(i)).getPhoneNumber() + ",",
                     "Name: " + ((Contact)inputs.get(i)).getName() + ",",
