@@ -283,4 +283,37 @@ public class UserInputIntegrationTest {
             Mockito.verify(spyConsole, times(3)).printOutput(any(), any(), any());
         }
     }
+    @Nested
+    @DisplayName("Delete Tests")
+    class DeleteTests {
+        @Test
+        @DisplayName("Console input of \"Delete Contact\" deletes the current contact")
+        public void InputOfDeleteContactDeletesCurrentContactFromAddressBook() {
+            // Arrange
+            Main spyMain = spy(Main.class);
+            AddressBook spyBook = spy(AddressBook.class);
+            Scanner mockScanner = mock(Scanner.class);
+            ConsoleManager spyConsole = spy(ConsoleManager.class);
+            // Act
+            Contact spyContact1 = spy(new Contact("David", "22222222222", "Dav-Id@mail.co.uk"));
+            spyBook.addContact(spyContact1);
+
+            Contact spyContact2 = spy(new Contact("Samuel", "12345678901", "Sammy@mail.co.uk"));
+            spyBook.addContact(spyContact2);
+
+            Contact spyContact3 = spy(new Contact("Arri", "01133557799", "Arr-I@Aol.fr"));
+            spyBook.addContact(spyContact3);
+
+            when(mockScanner.nextLine()).thenReturn("Search Samuel", "Delete Contact");
+            spyMain.setScanner(mockScanner);
+            spyMain.setAddressBook(spyBook);
+            spyMain.setConsole(spyConsole);
+
+            spyMain.readInput();
+            spyMain.readInput();
+
+            //Assert
+            assertEquals(spyBook.getContacts().size(), 2);
+        }
+    }
 }

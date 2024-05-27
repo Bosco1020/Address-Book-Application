@@ -38,4 +38,10 @@ public class AddressBook {
         return false;
     }
 
+    public boolean removeContact(Object target) {
+        if (contacts.indexOf(target) == -1) return false;
+        contacts.remove(target);
+        return true;
+    }
+
 }

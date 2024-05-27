@@ -35,6 +35,9 @@ public class Main {
             // edit current contact information
             editContact();
              }
+        if(read.equalsIgnoreCase("Delete Contact")) {
+            // Delete current contact
+             deleteContact(); }
         // default
 
     }
@@ -62,6 +65,14 @@ public class Main {
         toEdit.setNumber(console.collectNumber(scanner, toEdit.getPhoneNumber()));
         toEdit.setEmail(console.collectEmail(scanner, toEdit.getEmail()));
         Main.console.printOutput(addressBook.searchContacts(toEdit.getName()));
+    }
+
+    private static void deleteContact() {
+        Contact toEdit = getTarget();
+        if(toEdit == null) return;
+        if(addressBook.removeContact(toEdit))
+        console.printOutput("Contact " + toEdit.getName() + " has been removed from the Address Book.");
+        else console.printOutput("Contact not deleted. Please check you haven't already deleted the contact, or try to search for the target contact again.");
     }
 
     private static Contact getTarget() {
