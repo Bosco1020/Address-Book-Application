@@ -10,8 +10,8 @@ public class AddressBook {
         boolean duplicate = false;
         for(Object c : this.contacts){
             if(!duplicate) duplicate = checkDuplicate(contact, c); } // Don't want to accidentally set from true to false
-        if(!duplicate) contacts.add(contact);
-        System.out.println("Contact " + ((Contact)contact).getName() + " successfully added.");
+        if(!duplicate) { contacts.add(contact);
+        System.out.println("Contact " + ((Contact)contact).getName() + " successfully added."); }
     }
 
     // Compares if the 1st contact is Null (which Mock objects return null),
