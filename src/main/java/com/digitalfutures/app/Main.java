@@ -24,7 +24,7 @@ public class Main {
         String read = scanner.nextLine();
         if(read.equalsIgnoreCase("View Contacts")) {
             //view all contacts
-            viewContacts(); currentContacts = null; return; }
+            viewContacts(); return; }
         if(read.equalsIgnoreCase("New Contact")) {
             // make new contact & add to book
             newContact(); currentContacts = null; return; }
@@ -57,16 +57,16 @@ public class Main {
             console.printOutput("Sorry there was no match for that name."); }
         else {
             Main.console.printOutput(result);
-            currentContacts = result; }
+            currentContacts = new ArrayList<>(result); }
     }
 
     private static void editContact() {
-        Contact toEdit = getTarget();
-        if(toEdit == null) return;
+        Contact toEdit = getTarget(); if(toEdit == null) return;
+        console.printOutput("If you wish to keep a property the same, please leave the field blank.");
         toEdit.setName(console.collectName(scanner, toEdit.getName()));
         toEdit.setNumber(console.collectNumber(scanner, toEdit.getPhoneNumber()));
         toEdit.setEmail(console.collectEmail(scanner, toEdit.getEmail()));
-        Main.console.printOutput(addressBook.searchContacts(toEdit.getName()));
+        currentContacts.clear(); currentContacts.add(toEdit); Main.console.printOutput(currentContacts);
     }
 
     private static void deleteContact() {
@@ -78,9 +78,10 @@ public class Main {
     }
 
     private static void viewContacts() {
-        if(currentContacts.size() <= 0){
+        if(addressBook.getContacts() == null || addressBook.getContacts().size() <= 0){
             console.printOutput("There are currently no Contacts in the Address Book."); return; }
-        console.printOutput(addressBook.getContacts());
+        currentContacts = new ArrayList<>(addressBook.getContacts());
+        console.printOutput(currentContacts);
     }
 
     // If multiple search results, method interprets User Input into Integer for identify target index to Edit/Delete

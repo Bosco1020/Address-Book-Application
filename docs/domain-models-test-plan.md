@@ -84,6 +84,8 @@ Domain models created from User Stories, ordered to match up with corresponding 
 ## Class Diagram
 From the constructed Domain Models, below is a class diagram of the entire system:
 ![Class Diagram](./images/Class_Diagram.png)
+As a note, I did want to make the ConsoleManager a static class that was independent of the main, but for testing purposes I found it necessary to pass in an instance of the ConsoleManager.
+This was because for some tests that outputted to the console, the only way to test if they functioned correctly was to use Mockito to check if the printOutput method was called the correct number of times, which requires me to use a mocked version of the class (in this case a spy object). If it were an independent static class, then even if I made a mock it wouldn’t use the mocked version, so I had to pass the mocked version into the main thus making it more coupled than I’d of liked.
 
 ## Kanban Board
 Screenshots of the Kanban board I used to structure the development process:
